@@ -8,33 +8,48 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
             background: black;
-            color: white;
+            color: black;
+            font-family: Arial, sans-serif;
             overflow: hidden;
+        }
+
+        #head {
+            font-weight: 900;
+            font-size: 40px;
+        }
+
+        #par {
+            font-size: 20px;
+        }
+
+        #head2 {
+            font-size: 30px;
         }
 
         /* Start Screen */
         #startScreen {
-            position: absolute;
+            position: fixed;
             width: 100%;
             height: 100vh;
-            background: black;
+            background: aquamarine;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             z-index: 10;
+            text-align: center;
         }
 
         #startBtn {
             padding: 15px 30px;
-            font-size: 20px;
-            background: #00ffcc;
+            font-size: 18px;
+            background: #0f7043;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: 0.3s;
+            margin-top: 20px;
+            color: white;
         }
 
         #startBtn:hover {
@@ -42,78 +57,64 @@
         }
 
         /* Video */
-        #videoContainer {
-            display: none;
+        video {
             width: 100%;
             height: 100vh;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Skip Button */
-        #skipBtn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 10px 15px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
+            object-fit: cover;
             display: none;
+        }
+
+        /* Small loading text */
+        #loading {
+            margin-top: 10px;
+            font-size: 14px;
+            opacity: 0.7;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Start Screen -->
+    <!-- START SCREEN -->
     <div id="startScreen">
-        <h1>🚀 Bandarban University CSE Club</h1>
-        <p>Launching Experience</p>
-        <button id="startBtn">🔊 Click to Start</button>
+        <h1 id="head">| LEARN. CODE. INNOVATE</h1>
+
+        <P id="par">Think Logically, Solve Creatively.</P>
+
+        <h2 id="head2">🚀 Bandarban University CSE Club</h2>
+
+        <div id="loading">Click to enter launch video</div>
+        <button id="startBtn">Start</button>
     </div>
 
-    <!-- Video -->
-    <div id="videoContainer">
-        <button id="skipBtn">Skip</button>
+    <!-- VIDEO -->
+    <video id="video" playsinline>
+        <source src="vedio/YTDown.com_YouTube_Ceremony-Website-Launch_Media_6ukxRVphvgE_001_1080p.mp4" type="video/mp4">
+        Your browser does not support video.
+    </video>
 
-        <iframe id="videoFrame" src="" allow="autoplay">
-        </iframe>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
         const startBtn = document.getElementById("startBtn");
         const startScreen = document.getElementById("startScreen");
-        const videoContainer = document.getElementById("videoContainer");
-        const videoFrame = document.getElementById("videoFrame");
-        const skipBtn = document.getElementById("skipBtn");
+        const video = document.getElementById("video");
 
         startBtn.onclick = function () {
-            // Hide start screen
+
+            // hide start screen
             startScreen.style.display = "none";
 
-            // Show video
-            videoContainer.style.display = "block";
-            skipBtn.style.display = "block";
+            // show video
+            video.style.display = "block";
 
-            // Load YouTube video WITH SOUND
-            videoFrame.src = "https://www.youtube.com/embed/6ukxRVphvgE?autoplay=1&controls=0";
+            // play video
+            video.play();
 
-            // Redirect after video duration (adjust time)
+            // 🔥 MOST IMPORTANT: redirect after video ends
             setTimeout(() => {
                 window.location.href = "https://bandarban-university-cse-club.vercel.app/";
-            }, 25000); // 👉 video length অনুযায়ী change করো
-        };
-
-        // Skip button
-        skipBtn.onclick = function () {
-            window.location.href = "https://bandarban-university-cse-club.vercel.app/";
+            }, 24000);
         };
     </script>
 
