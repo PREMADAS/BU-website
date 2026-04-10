@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Launching</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="overlay">🔊 Click to Start</div>
+
+    <iframe id="videoFrame" src="" allow="autoplay">
+    </iframe>
+
+    <script>
+        const overlay = document.getElementById("overlay");
+        const frame = document.getElementById("videoFrame");
+
+        overlay.onclick = function () {
+           
+            frame.src = "https://www.youtube.com/embed/6ukxRVphvgE?autoplay=1&controls=0";
+            overlay.style.display = "none";
+
+            
+            setTimeout(() => {
+                window.location.href = "https://bandarban-university-cse-club.vercel.app/";
+            }, 24000);
+        };
+    </script>
+
+</body>
+
+</html>
