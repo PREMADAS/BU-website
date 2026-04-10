@@ -3,59 +3,117 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Launching</title>
+    <title>Launching Soon</title>
 
     <style>
         body {
             margin: 0;
+            font-family: Arial, sans-serif;
             background: black;
+            color: white;
             overflow: hidden;
+        }
+
+        /* Start Screen */
+        #startScreen {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        #startBtn {
+            padding: 15px 30px;
+            font-size: 20px;
+            background: #00ffcc;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #startBtn:hover {
+            background: #00ccaa;
+        }
+
+        /* Video */
+        #videoContainer {
+            display: none;
+            width: 100%;
+            height: 100vh;
         }
 
         iframe {
             width: 100%;
-            height: 100vh;
+            height: 100%;
             border: none;
         }
 
-        #overlay {
+        /* Skip Button */
+        #skipBtn {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: black;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
             color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
             cursor: pointer;
-            z-index: 10;
+            border-radius: 5px;
+            display: none;
         }
     </style>
 </head>
 
 <body>
 
-    <div id="overlay">🔊 Click to Start</div>
+    <!-- Start Screen -->
+    <div id="startScreen">
+        <h1>🚀 Bandarban University CSE Club</h1>
+        <p>Launching Experience</p>
+        <button id="startBtn">🔊 Click to Start</button>
+    </div>
 
-    <iframe id="videoFrame" src="" allow="autoplay">
-    </iframe>
+    <!-- Video -->
+    <div id="videoContainer">
+        <button id="skipBtn">Skip</button>
+
+        <iframe id="videoFrame" src="" allow="autoplay">
+        </iframe>
+    </div>
 
     <script>
-        const overlay = document.getElementById("overlay");
-        const frame = document.getElementById("videoFrame");
+        const startBtn = document.getElementById("startBtn");
+        const startScreen = document.getElementById("startScreen");
+        const videoContainer = document.getElementById("videoContainer");
+        const videoFrame = document.getElementById("videoFrame");
+        const skipBtn = document.getElementById("skipBtn");
 
-        overlay.onclick = function () {
-           
-            frame.src = "https://www.youtube.com/embed/6ukxRVphvgE?autoplay=1&controls=0";
-            overlay.style.display = "none";
+        startBtn.onclick = function () {
+            // Hide start screen
+            startScreen.style.display = "none";
 
-            
+            // Show video
+            videoContainer.style.display = "block";
+            skipBtn.style.display = "block";
+
+            // Load YouTube video WITH SOUND
+            videoFrame.src = "https://www.youtube.com/embed/6ukxRVphvgE?autoplay=1&controls=0";
+
+            // Redirect after video duration (adjust time)
             setTimeout(() => {
                 window.location.href = "https://bandarban-university-cse-club.vercel.app/";
-            }, 24000);
+            }, 25000); // 👉 video length অনুযায়ী change করো
+        };
+
+        // Skip button
+        skipBtn.onclick = function () {
+            window.location.href = "https://bandarban-university-cse-club.vercel.app/";
         };
     </script>
 
